@@ -3,7 +3,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 export default function SettingScreen() {
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider style = {{backgroundColor: 'pink'}}>
       <SafeAreaView style = {styles.container} edges = {['top']}>
         <ScrollView style = {styles.scrollView}>
           <Text style = {styles.welcomeText}>Settings</Text>
@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
-    backgroundColor: 'pink'
   },
   welcomeText: {
     fontWeight: 'bold',

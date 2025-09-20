@@ -3,7 +3,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider style = {{backgroundColor: 'red'}}>
       <SafeAreaView style = {styles.container} edges = {['top']}>
         <ScrollView style = {styles.scrollView}>
           <Text style = {styles.welcomeText}>Welcome Jayden Chun!</Text>
