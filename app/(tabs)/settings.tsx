@@ -1,21 +1,27 @@
-import { useColorScheme } from '@/hooks/use-color-scheme';
 import { ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 export default function SettingScreen() {
-    const { colorScheme, setColorScheme, toggleColorScheme } = useColorScheme();
-  
-    // Convert string to boolean for Switch component
-    const isDarkMode = colorScheme === 'dark';
+    // const { colorScheme, setColorScheme } = useColorScheme();
+    // const toggleColorScheme = () => {
+    //     setColorScheme(colorScheme === 'light' ? 'dark' : 'light');
+    // };
+    // const isDarkMode = colorScheme === 'dark';
+    // const textColor = isDarkMode ? 'white' : 'black';
+    // const backgroundColor = isDarkMode ? 'black' : 'white';
 
     return (
-        <SafeAreaProvider style = {{backgroundColor: 'pink'}}>
+        // <SafeAreaProvider style = {{backgroundColor: backgroundColor}}>
+        <SafeAreaProvider style = {{backgroundColor: 'white'}}>
             <SafeAreaView style = {styles.container} edges = {['top']}>
                 <ScrollView style = {styles.scrollView}>
-                <Text style = {styles.welcomeText}>Settings</Text>
+                {/* <Text style = {[styles.welcomeText, { color: textColor }]}>Settings</Text> */}
+                <Text style = {[styles.welcomeText, { color: 'grey' }]}>Settings</Text>
                 <View style = {styles.settingsView}>
                     <View style = {styles.settingsComponent}>
-                        <Text style = {styles.settingsText}>Dark</Text>
-                        <Switch value={isDarkMode} onValueChange={toggleColorScheme} trackColor={{false: '#000000', true: '#FFFFFF'}} ios_backgroundColor="#000000" thumbColor = {colorScheme === 'dark' ? 'black' : 'white'} style = {styles.switch}/>
+                        {/* <Text style = {[styles.settingsText, { color: textColor }]}>{isDarkMode ? 'Dark' : 'Light'} Theme</Text> */}
+                        <Text style = {[styles.settingsText, { color: 'grey' }]}>Dark Theme</Text>
+                        {/* <Switch value={colorScheme === 'dark'} onValueChange={toggleColorScheme} trackColor={{false: '#000000', true: '#FFFFFF'}} ios_backgroundColor="#000000" thumbColor = {colorScheme === 'dark' ? 'black' : 'white'} style = {styles.switch}/> */}
+                        <Switch value={true} onValueChange={() => {}} trackColor={{false: '#000000', true: '#FFFFFF'}} ios_backgroundColor="#000000" thumbColor = {'black'} style = {styles.switch}/>
                     </View>
                 </View>
                 </ScrollView>
