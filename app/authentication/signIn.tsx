@@ -1,4 +1,4 @@
-import { Link, Redirect } from "expo-router";
+import { Link } from "expo-router";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React from "react";
 import {
@@ -10,7 +10,6 @@ import {
     View
 } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { useSession } from "../../components/context/ctx";
 import { auth } from "../../firebase.config";
 
 
@@ -19,7 +18,6 @@ export default function SignInScreen() {
   const [password, onChangePassword] = React.useState("");
   const [enteredUsername, setEnteredUsername] = React.useState(false);
   const [authError, setAuthError] = React.useState(false);
-  const { user, isLoading } = useSession();
 
   const signInWithEmail = async () => {
     setEnteredUsername(true);
@@ -47,7 +45,6 @@ export default function SignInScreen() {
 
   return (
     <SafeAreaProvider style={styles.safeview}>
-      {user && <Redirect href={"/(tabs)"} />}
       <Pressable style={styles.container} onPress={Keyboard.dismiss}>
         <Text style={styles.titleText}>StudyBits</Text>
         <Text style={styles.headText}>Welcome</Text>
