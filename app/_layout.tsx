@@ -1,6 +1,8 @@
 import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
 import 'react-native-reanimated';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SessionProvider } from '../components/context/ctx';
 
 
 export const unstable_settings = {
@@ -12,13 +14,16 @@ export default function RootLayout() {
 
   return (
     // <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-    <ThemeProvider value={DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="authentication/signIn" options={{}} />
-        {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} /> */}
-      </Stack>
-      {/* <StatusBar style="auto" /> */}
-    </ThemeProvider>
+    <SafeAreaProvider style = {{backgroundColor: '#c2b294'}}>
+      <SessionProvider>
+        <ThemeProvider value={DefaultTheme}>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="authentication/signIn" options={{headerShown: true}} />
+            <Stack.Screen name="(tabs)" />
+          </Stack>
+          {/* <StatusBar style="auto" /> */}
+        </ThemeProvider>
+      </SessionProvider>
+    </SafeAreaProvider>
   );
 }
