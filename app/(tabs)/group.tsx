@@ -4,13 +4,13 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 export default function TabTwoScreen() {
   return (
     <SafeAreaProvider style = {{backgroundColor: '#c2b294'}}>
-          <SafeAreaView style = {{}} edges = {['top']}>
-            <ScrollView style = {{}}>
-              {/* <Text style = {[styles.welcomeText, { color: textColor }]}>Welcome Jayden Chun!</Text> */}
-              <Text style = {[{ color: '#3b3e37' }]}>Text</Text>
-            </ScrollView>
-          </SafeAreaView>
-        </SafeAreaProvider>
+      <SafeAreaView style = {{}} edges = {['top']}>
+        <ScrollView style = {{}}>
+          {/* <Text style = {[styles.welcomeText, { color: textColor }]}>Welcome Jayden Chun!</Text> */}
+          <Text style = {[{ color: '#3b3e37' }]}>Text</Text>
+        </ScrollView>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
