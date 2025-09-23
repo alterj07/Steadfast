@@ -46,9 +46,9 @@ export default function SignInScreen() {
   return (
     <SafeAreaProvider style={styles.safeview}>
       <Pressable style={styles.container} onPress={Keyboard.dismiss}>
-        <Text style={styles.titleText}>StudyBits</Text>
+        <Text style={styles.titleText}>Steadfast</Text>
         <Text style={styles.headText}>Welcome</Text>
-        <Text style={styles.subText}>Get ready to be an intellectual</Text>
+        <Text style={styles.subText}>Get ready to be steadfast in prayer</Text>
         {authError && (
           <Text style={styles.errorText}>Invalid username or password.</Text>
         )}
@@ -118,23 +118,23 @@ const styles = StyleSheet.create({
   divider: {
     width: "21%",
     marginHorizontal: "2%",
-    borderBottomColor: "white",
+    borderBottomColor: "#3b3e37",
     borderBottomWidth: 2,
   },
   titleText: {
     fontSize: 24,
-    color: "white",
+    color: "#3b3e37",
     paddingBottom: 100,
     fontWeight: "bold",
   },
   headText: {
     fontSize: 18,
-    color: "white",
+    color: "#3b3e37",
     paddingBottom: 20,
     fontWeight: "bold",
   },
   subText: {
-    color: "white",
+    color: "#3b3e37",
     paddingBottom: 30,
   },
   signuptext: {
@@ -145,6 +145,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#c2b294",
   },
   container: {
     justifyContent: "center",
@@ -155,7 +156,7 @@ const styles = StyleSheet.create({
     marginRight: "2%",
   },
   text: {
-    color: "white",
+    color: "#3b3e37",
     textAlign: "center",
   },
   input: {

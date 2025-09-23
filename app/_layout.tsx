@@ -18,7 +18,7 @@ export default function RootLayout() {
       <SessionProvider>
         <ThemeProvider value={DefaultTheme}>
           <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="authentication/signIn" options={{headerShown: true}} />
+            <Stack.Screen name="authentication/signIn" />
             <Stack.Screen name="(tabs)" />
           </Stack>
           {/* <StatusBar style="auto" /> */}
