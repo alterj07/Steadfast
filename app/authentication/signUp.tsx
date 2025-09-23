@@ -1,4 +1,5 @@
-import { Link, Redirect } from "expo-router";
+import { Link } from "expo-router";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import React from "react";
 import {
     Pressable,
@@ -8,7 +9,6 @@ import {
     View
 } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { useSession } from "../../components/context/ctx";
 import { auth } from "../../firebase.config";
 
 
@@ -18,7 +18,6 @@ export default function SignUpScreen() {
   const [errorText, setErrorText] = React.useState("");
   const [password, onChangePassword] = React.useState("");
   const [confirmPassword, onChangeConfirmPassword] = React.useState("");
-  const { user } = useSession();
 
   const signUp = async () => {
     if (email === "" || password === "") return;
@@ -26,8 +25,8 @@ export default function SignUpScreen() {
       return setErrorText("Passwords do not match");
 
     try {
-      await auth().createUserWithEmailAndPassword(email, password);
-      await auth().currentUser?.updateProfile({
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(userCredential.user, {
         displayName: name,
       });
       console.log("yay");
@@ -41,11 +40,10 @@ export default function SignUpScreen() {
 
   return (
     <SafeAreaProvider style={styles.safeview}>
-      {user && <Redirect href={"/(tabs)"} />}
       <View style={styles.container}>
-        <Text style={styles.titleText}>StudyBits</Text>
+        <Text style={styles.titleText}>Steadfast</Text>
         <Text style={styles.headText}>Welcome</Text>
-        <Text style={styles.subText}>Get ready to be an intellectual</Text>
+        <Text style={styles.subText}>Get ready to be steadfast in prayer</Text>
         {errorText !== "" && <Text style={styles.errorText}>{errorText}</Text>}
         <View style={styles.labelContainer}>
           <Text style={styles.label}>Name</Text>
@@ -116,6 +114,7 @@ const styles = StyleSheet.create({
   safeview: {
     flex: 1,
     justifyContent: "center",
+    backgroundColor: '#c2b294',
   },
   container: {
     justifyContent: "center",
@@ -129,18 +128,18 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontSize: 30,
-    color: "white",
+    color: "#3b3e37",
     paddingBottom: 20,
     fontWeight: "bold",
   },
   headText: {
     fontSize: 22,
-    color: "white",
+    color: "#3b3e37",
     paddingBottom: 10,
     fontWeight: "600",
   },
   subText: {
-    color: "white",
+    color: "#3b3e37",
     paddingBottom: 30,
     fontSize: 16,
     textAlign: "center",
@@ -150,7 +149,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   label: {
-    color: "white",
+    color: "#3b3e37",
     fontWeight: "bold",
     fontSize: 15,
     marginBottom: 8,
@@ -163,7 +162,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   button: {
-    backgroundColor: "#FF8800",
+    backgroundColor: "#6a6748",
     padding: 15,
     borderRadius: 5,
     width: "80%",
