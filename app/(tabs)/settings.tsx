@@ -11,15 +11,15 @@ export default function SettingScreen() {
 
     return (
         // <SafeAreaProvider style = {{backgroundColor: backgroundColor}}>
-        <SafeAreaProvider style = {{backgroundColor: 'white'}}>
+        <SafeAreaProvider style = {{backgroundColor: '#c2b294'}}>
             <SafeAreaView style = {styles.container} edges = {['top']}>
                 <ScrollView style = {styles.scrollView}>
                 {/* <Text style = {[styles.welcomeText, { color: textColor }]}>Settings</Text> */}
-                <Text style = {[styles.welcomeText, { color: 'grey' }]}>Settings</Text>
+                <Text style = {[styles.welcomeText, { color: '#3b3e37' }]}>Settings</Text>
                 <View style = {styles.settingsView}>
                     <View style = {styles.settingsComponent}>
                         {/* <Text style = {[styles.settingsText, { color: textColor }]}>{isDarkMode ? 'Dark' : 'Light'} Theme</Text> */}
-                        <Text style = {[styles.settingsText, { color: 'grey' }]}>Dark Theme</Text>
+                        <Text style = {[styles.settingsText, { color: '#3b3e37' }]}>Dark Theme</Text>
                         {/* <Switch value={colorScheme === 'dark'} onValueChange={toggleColorScheme} trackColor={{false: '#000000', true: '#FFFFFF'}} ios_backgroundColor="#000000" thumbColor = {colorScheme === 'dark' ? 'black' : 'white'} style = {styles.switch}/> */}
                         <Switch value={true} onValueChange={() => {}} trackColor={{false: '#000000', true: '#FFFFFF'}} ios_backgroundColor="#000000" thumbColor = {'black'} style = {styles.switch}/>
                     </View>

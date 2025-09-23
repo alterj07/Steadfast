@@ -13,11 +13,11 @@ export default function HomeScreen() {
   // };
   return (
     // <SafeAreaProvider style = {{backgroundColor: backgroundColor}}>
-    <SafeAreaProvider style = {{backgroundColor: 'white'}}>
+    <SafeAreaProvider style = {{backgroundColor: '#c2b294'}}>
       <SafeAreaView style = {styles.container} edges = {['top']}>
         <ScrollView style = {styles.scrollView}>
           {/* <Text style = {[styles.welcomeText, { color: textColor }]}>Welcome Jayden Chun!</Text> */}
-          <Text style = {[styles.welcomeText, { color: 'grey' }]}>Welcome Jayden Chun!</Text>
+          <Text style = {[styles.welcomeText, { color: '#3b3e37' }]}>Welcome Jayden Chun!</Text>
         </ScrollView>
       </SafeAreaView>
     </SafeAreaProvider>
