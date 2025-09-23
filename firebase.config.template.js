@@ -3,13 +3,14 @@ import { initializeApp } from 'firebase/app';
 import { getReactNativePersistence, initializeAuth } from 'firebase/auth';
 
 // Your Firebase configuration
+// Copy this file to firebase.config.js and fill in your actual values
 const firebaseConfig = {
-  apiKey: "AIzaSyBBRb-5vjjVwVOZjd42bhEnM7K3rjYDjt4",
-  authDomain: "steadfast-bcdaf.firebaseapp.com",
-  projectId: "steadfast-bcdaf",
-  storageBucket: "steadfast-bcdaf.appspot.com",
-  messagingSenderId: "354234276503",
-  appId: "your-app-id" // You'll need to get this from Firebase Console
+  apiKey: "your-api-key",
+  authDomain: "your-project.firebaseapp.com",
+  projectId: "your-project-id",
+  storageBucket: "your-project.appspot.com",
+  messagingSenderId: "123456789",
+  appId: "your-app-id"
 };
 
 // Initialize Firebase
