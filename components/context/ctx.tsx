@@ -1,9 +1,10 @@
 import { useStorageState } from '@/hooks/useStorageState';
-import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import { onAuthStateChanged, User } from 'firebase/auth';
 import React, { useEffect } from 'react';
+import { auth } from '../../firebase.config';
 
 const AuthContext = React.createContext<{
-  user?: FirebaseAuthTypes.User | null;
+  user?: User | null;
   isLoading: boolean;
 }>({
   user: null,
@@ -26,13 +27,15 @@ export function SessionProvider(props: React.PropsWithChildren) {
   const [[isLoading, user], setUser] = useStorageState('null');
 
   useEffect(() => {
-    auth().onAuthStateChanged((user: FirebaseAuthTypes.User | null) => {
+    const unsubscribe = onAuthStateChanged(auth, (user: User | null) => {
       if (user) setUser(JSON.stringify(user));
       else setUser(null);
     });
+
+    return () => unsubscribe();
   }, []);
 
-  const parsed: FirebaseAuthTypes.User = JSON.parse(user || 'null');
+  const parsed: User = JSON.parse(user || 'null');
 
   return (
     <AuthContext.Provider

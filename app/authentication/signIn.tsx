@@ -1,5 +1,5 @@
-import auth from "@react-native-firebase/auth";
 import { Link, Redirect } from "expo-router";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import React from "react";
 import {
     Keyboard,
@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useSession } from "../../components/context/ctx";
+import { auth } from "../../firebase.config";
 
 
 export default function SignInScreen() {
@@ -24,11 +25,12 @@ export default function SignInScreen() {
     setEnteredUsername(true);
     if (!enteredUsername) return;
     if (email === "" || password === "") return;
-    return auth()
-      .signInWithEmailAndPassword(email, password)
-      .catch(() => {
-        setAuthError(true);
-      });
+    
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      setAuthError(true);
+    }
   };
 
 //   const signInWithGoogle = async () => {
