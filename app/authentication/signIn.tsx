@@ -1,54 +1,71 @@
-import { Link } from "expo-router";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { useSession } from "@/components/context/ctx";
+import * as Google from "expo-auth-session/providers/google";
+import { Link, Redirect } from "expo-router";
+import * as WebBrowser from "expo-web-browser";
+import {
+  GoogleAuthProvider,
+  signInWithCredential,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import React from "react";
 import {
-    Keyboard,
-    Pressable,
-    StyleSheet,
-    Text,
-    TextInput,
-    View
+  Image,
+  Keyboard,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View
 } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 import { auth } from "../../firebase.config";
 
+import { SafeAreaView } from "react-native-safe-area-context";
+
+WebBrowser.maybeCompleteAuthSession();
 
 export default function SignInScreen() {
+  const [request, response, promptAsync] = Google.useAuthRequest({
+    webClientId:
+      "1098397225551-4fo48u8pni4nct9f1msj5n81nes8b3oe.apps.googleusercontent.com",
+    scopes: ["profile", "email"],
+  });
+
+  React.useEffect(() => {
+    if (response?.type === "success") {
+      const params = (response as any).params ?? {};
+      const idToken = params.id_token || params.idToken || params.accessToken;
+      const accessToken = params.access_token || params.accessToken;
+      const credential = GoogleAuthProvider.credential(idToken, accessToken);
+      signInWithCredential(auth, credential).catch(() => setAuthError(true));
+    }
+  }, [response]);
   const [email, onChangeEmail] = React.useState("");
   const [password, onChangePassword] = React.useState("");
   const [enteredUsername, setEnteredUsername] = React.useState(false);
   const [authError, setAuthError] = React.useState(false);
+  const { user, isLoading } = useSession();
 
   const signInWithEmail = async () => {
     setEnteredUsername(true);
     if (!enteredUsername) return;
     if (email === "" || password === "") return;
-    
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-    } catch (error) {
+    return signInWithEmailAndPassword(auth, email, password).catch(() => {
       setAuthError(true);
-    }
+    });
   };
 
-//   const signInWithGoogle = async () => {
-//     await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-//     // Get the users ID token
-//     const { idToken } = await GoogleSignin.signIn();
-
-//     // Create a Google credential with the token
-//     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-
-//     // Sign-in the user with the credential
-//     return auth().signInWithCredential(googleCredential);
-//   };
+  const signInWithGoogle = async () => {
+    // Launch the system browser/google auth flow. The response is handled in the effect above.
+    await promptAsync();
+  };
 
   return (
-    <SafeAreaProvider style={styles.safeview}>
+    <SafeAreaView style={styles.safeview}>
+      {user && <Redirect href={"/(tabs)"} />}
       <Pressable style={styles.container} onPress={Keyboard.dismiss}>
         <Text style={styles.titleText}>Steadfast</Text>
         <Text style={styles.headText}>Welcome</Text>
-        <Text style={styles.subText}>Get ready to be steadfast in prayer</Text>
+        <Text style={styles.subText}>Get ready to be an intellectual</Text>
         {authError && (
           <Text style={styles.errorText}>Invalid username or password.</Text>
         )}
@@ -82,13 +99,13 @@ export default function SignInScreen() {
           </View>
           <View style={styles.divider} />
         </View>
-        {/* <Pressable style={styles.button} onPress={signInWithGoogle}>
+        <Pressable style={styles.button} onPress={signInWithGoogle}>
           <Image
             source={require("@/assets/images/google-logo.png")}
             style={styles.signInImage}
           ></Image>
           <Text style={styles.signuptext}>Google</Text>
-        </Pressable> */}
+        </Pressable>
         <View
           style={{
             flexDirection: "row",
@@ -107,7 +124,7 @@ export default function SignInScreen() {
           </Link>
         </View>
       </Pressable>
-    </SafeAreaProvider>
+    </SafeAreaView>
   );
 }
 
@@ -118,23 +135,23 @@ const styles = StyleSheet.create({
   divider: {
     width: "21%",
     marginHorizontal: "2%",
-    borderBottomColor: "#3b3e37",
+    borderBottomColor: "white",
     borderBottomWidth: 2,
   },
   titleText: {
     fontSize: 24,
-    color: "#3b3e37",
+    color: "white",
     paddingBottom: 100,
     fontWeight: "bold",
   },
   headText: {
     fontSize: 18,
-    color: "#3b3e37",
+    color: "white",
     paddingBottom: 20,
     fontWeight: "bold",
   },
   subText: {
-    color: "#3b3e37",
+    color: "white",
     paddingBottom: 30,
   },
   signuptext: {
@@ -145,7 +162,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#c2b294",
   },
   container: {
     justifyContent: "center",
@@ -156,7 +172,7 @@ const styles = StyleSheet.create({
     marginRight: "2%",
   },
   text: {
-    color: "#3b3e37",
+    color: "white",
     textAlign: "center",
   },
   input: {
