@@ -140,22 +140,22 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontSize: 24,
-    color: "white",
+    color: "#3b3e37",
     paddingBottom: 100,
     fontWeight: "bold",
   },
   headText: {
     fontSize: 18,
-    color: "white",
+    color: "#3b3e37",
     paddingBottom: 20,
     fontWeight: "bold",
   },
   subText: {
-    color: "white",
+    color: "#3b3e37",
     paddingBottom: 30,
   },
   signuptext: {
-    color: "black",
+    color: "#3b3e37",
     textAlign: "center",
   },
   safeview: {
@@ -172,12 +172,12 @@ const styles = StyleSheet.create({
     marginRight: "2%",
   },
   text: {
-    color: "white",
+    color: "#3b3e37",
     textAlign: "center",
   },
   input: {
     backgroundColor: "#333",
-    color: "white",
+    color: "#3b3e37",
     borderRadius: 5,
     padding: 12,
     fontSize: 16,
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   button: {
-    backgroundColor: "#ffffff",
+    backgroundColor: "#908564",
     padding: 10,
     alignItems: "center",
     borderRadius: 5,
