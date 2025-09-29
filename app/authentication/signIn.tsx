@@ -25,8 +25,8 @@ WebBrowser.maybeCompleteAuthSession();
 
 export default function SignInScreen() {
   const [request, response, promptAsync] = Google.useAuthRequest({
-    webClientId:
-      "1098397225551-4fo48u8pni4nct9f1msj5n81nes8b3oe.apps.googleusercontent.com",
+    webClientId: "595140919515-7n8nckbph8i0dgsf5ottqath8hionh32.apps.googleusercontent.com",
+    iosClientId: "595140919515-7n8nckbph8i0dgsf5ottqath8hionh32.apps.googleusercontent.com",
     scopes: ["profile", "email"],
   });
 
@@ -61,69 +61,71 @@ export default function SignInScreen() {
 
   return (
     <SafeAreaView style={styles.safeview}>
-      {user && <Redirect href={"/(tabs)"} />}
-      <Pressable style={styles.container} onPress={Keyboard.dismiss}>
-        <Text style={styles.titleText}>Steadfast</Text>
-        <Text style={styles.headText}>Welcome</Text>
-        <Text style={styles.subText}>Get ready to be an intellectual</Text>
-        {authError && (
-          <Text style={styles.errorText}>Invalid username or password.</Text>
-        )}
-        <TextInput
-          style={[styles.input, { marginBottom: 0 }]}
-          onChangeText={onChangeEmail}
-          value={email}
-          placeholder="email@domain.com"
-          placeholderTextColor={"#868686"}
-        />
-        <View style={{ marginTop: 10, width: "100%", alignItems: "center" }}>
-          {enteredUsername && (
-            <TextInput
-              style={styles.input}
-              onChangeText={onChangePassword}
-              secureTextEntry
-              value={password}
-              placeholder="mysupersafepassword123"
-              placeholderTextColor={"#868686"}
-            />
+      {/* <ScrollView style={styles.safeview}> */}
+        {user && <Redirect href={"/(tabs)"} />}
+        <Pressable style={styles.container} onPress={Keyboard.dismiss}>
+          <Text style={styles.titleText}>Steadfast</Text>
+          <Text style={styles.headText}>Welcome</Text>
+          <Text style={styles.subText}>Get ready to be an intellectual</Text>
+          {authError && (
+            <Text style={styles.errorText}>Invalid username or password.</Text>
           )}
-        </View>
-        <Pressable style={styles.button} onPress={signInWithEmail}>
-          <Text style={styles.signuptext}>Sign in with email</Text>
-        </Pressable>
-
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <View style={styles.divider} />
-          <View>
-            <Text style={styles.text}>or continue with</Text>
+          <TextInput
+            style={[styles.input, { marginBottom: 0 }]}
+            onChangeText={onChangeEmail}
+            value={email}
+            placeholder="email@domain.com"
+            placeholderTextColor={"#868686"}
+          />
+          <View style={{ marginTop: 10, width: "100%", alignItems: "center" }}>
+            {enteredUsername && (
+              <TextInput
+                style={styles.input}
+                onChangeText={onChangePassword}
+                secureTextEntry
+                value={password}
+                placeholder="mysupersafepassword123"
+                placeholderTextColor={"#868686"}
+              />
+            )}
           </View>
-          <View style={styles.divider} />
-        </View>
-        <Pressable style={styles.button} onPress={signInWithGoogle}>
-          <Image
-            source={require("@/assets/images/google-logo.png")}
-            style={styles.signInImage}
-          ></Image>
-          <Text style={styles.signuptext}>Google</Text>
-        </Pressable>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Text style={[styles.text, styles.policies]}>
-            Don't have an account?
-          </Text>
-          <Link
-            href={"/authentication/signUp"}
-            style={[styles.text, styles.link]}
+          <Pressable style={styles.button} onPress={signInWithEmail}>
+            <Text style={styles.signuptext}>Sign in with email</Text>
+          </Pressable>
+
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <View style={styles.divider} />
+            <View>
+              <Text style={styles.text}>or continue with</Text>
+            </View>
+            <View style={styles.divider} />
+          </View>
+          <Pressable style={styles.button} onPress={signInWithGoogle}>
+            <Image
+              source={require("@/assets/images/google-logo.png")}
+              style={styles.signInImage}
+            ></Image>
+            <Text style={styles.signuptext}>Google</Text>
+          </Pressable>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
-            Sign Up
-          </Link>
-        </View>
-      </Pressable>
+            <Text style={[styles.text, styles.policies]}>
+              Don't have an account?
+            </Text>
+            <Link
+              href={"/authentication/signUp"}
+              style={[styles.text, styles.link]}
+            >
+              Sign Up
+            </Link>
+          </View>
+        </Pressable>
+      {/* </ScrollView> */}
     </SafeAreaView>
   );
 }
@@ -155,7 +157,7 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
   },
   signuptext: {
-    color: "#3b3e37",
+    color: "white",
     textAlign: "center",
   },
   safeview: {
@@ -177,7 +179,7 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: "#333",
-    color: "#3b3e37",
+    color: "white",
     borderRadius: 5,
     padding: 12,
     fontSize: 16,
