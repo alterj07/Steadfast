@@ -3,19 +3,21 @@ import { Stack } from 'expo-router';
 import 'react-native-reanimated';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { SessionProvider } from '../components/context/ctx';
+import { Colors } from '../constants/theme';
+import { ColorSchemeProvider, useColorScheme } from '../hooks/use-color-scheme';
 
 
 export const unstable_settings = {
   anchor: '(tabs)',
 };
 
-export default function RootLayout() {
-  // const { colorScheme } = useColorScheme();
+function RootLayoutContent() {
+  const { colorScheme } = useColorScheme();
+  const currentColors = Colors[colorScheme as keyof typeof Colors];
 
   return (
-    // <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-    <SafeAreaProvider style = {{backgroundColor: '#c2b294'}}>
-      <SessionProvider>
+    <SessionProvider>
+      <SafeAreaProvider style={{ backgroundColor: currentColors.background }}>
         <ThemeProvider value={DefaultTheme}>
           <Stack screenOptions={{ headerShown: false }}>
             <Stack.Screen name="authentication/signIn" />
@@ -23,7 +25,15 @@ export default function RootLayout() {
           </Stack>
           {/* <StatusBar style="auto" /> */}
         </ThemeProvider>
-      </SessionProvider>
-    </SafeAreaProvider>
+      </SafeAreaProvider>
+    </SessionProvider>
+  );
+}
+
+export default function RootLayout() {
+  return (
+    <ColorSchemeProvider>
+      <RootLayoutContent />
+    </ColorSchemeProvider>
   );
 }
