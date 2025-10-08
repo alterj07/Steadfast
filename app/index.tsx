@@ -1,6 +1,7 @@
 import { Redirect } from 'expo-router';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { useEffect, useState } from 'react';
+import { ActivityIndicator, View } from 'react-native';
 import { auth } from '../firebase.config';
 
 export default function Index() {
@@ -17,7 +18,11 @@ export default function Index() {
   }, []);
 
   if (isLoading) {
-    return null; // or a loading component
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
   }
 
   if (user) {
