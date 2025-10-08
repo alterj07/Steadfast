@@ -1,12 +1,23 @@
 import { Redirect } from 'expo-router';
-import { useSession } from '../components/context/ctx';
+import { onAuthStateChanged, User } from 'firebase/auth';
+import { useEffect, useState } from 'react';
+import { auth } from '../firebase.config';
 
 export default function Index() {
-  const { user, isLoading } = useSession();
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setIsLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   if (isLoading) {
-    // You could show a loading screen here
-    return null;
+    return null; // or a loading component
   }
 
   if (user) {

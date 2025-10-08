@@ -1,19 +1,15 @@
 import { router } from 'expo-router';
-import { getAuth } from 'firebase/auth';
 import React from 'react';
 import { Alert, ScrollView, StyleSheet, Switch, Text, TouchableHighlight, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { useSession } from '../../components/context/ctx';
 import { Colors } from '../../constants/theme';
-import firebase from '../../firebase.config';
+import { auth } from '../../firebase.config';
 import { useColorScheme } from '../../hooks/use-color-scheme';
+
 export default function SettingScreen() {
-    const auth = getAuth(firebase);
     const { colorScheme, toggleColorScheme } = useColorScheme();
-    const { user } = useSession();
-    
     const currentColors = Colors[colorScheme as keyof typeof Colors];
-    
+
     const handleLogout = () => {
         Alert.alert(
             'Log Out',
