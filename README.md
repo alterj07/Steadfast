@@ -1,50 +1,60 @@
-# Welcome to your Expo app 👋
+# Steadfast
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+*A faith-centered React Native app for personal and group prayer tracking.*
 
-## Get started
+## Overview
 
-1. Install dependencies
+**Steadfast** is a **React Native** mobile application designed to help individuals and small groups stay connected through prayer.
+Users can log personal prayers, view updates from their **small groups**, and track answered prayers over time — fostering both reflection and community connection.
+
+---
+
+## Features
+
+* **Personal Prayer Journal** – Record, categorize, and update your own prayer requests.
+* **Small Group Sharing** – Join or create prayer circles to share requests and updates with trusted friends.
+* **Answered Prayer Tracking** – Mark prayers as answered and celebrate progress together.
+* **Reminders & Notifications** – Get notified to pray for others or revisit ongoing requests.
+* **Cloud Sync** – Securely stores prayer data and syncs across devices.
+
+---
+
+## Setup & Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/yourusername/Steadfast.git
+   cd Steadfast
+   ```
+
+2. **Install dependencies**
 
    ```bash
    npm install
    ```
 
-2. Start the app
+3. **Run the app**
 
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+   or
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   ```bash
+   npm run android
+   # or
+   npm run ios
+   ```
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## 💡 Future Enhancements
 
-When you're ready, run:
+* Cross-group collaboration and public prayer requests
+* Commenting or “lifting up” prayers in-app
+* Daily devotionals and scripture integration
+* Calendar view for prayer reminders
+* AI-powered “prayer summaries”
 
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
